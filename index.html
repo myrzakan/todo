@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="enh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>todos</title>
+	<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+
+
+	<main>
+		<div class="container">
+			<div class="fieldsCard">
+				<div>
+					<input class='titleInput' placeholder='Ведите заголовок'>
+				</div>
+
+				<div class='categoryContainer'>
+					<select class='categorySelect'>
+						<option value="">Выберите категории</option>
+					</select>
+					<button class='add_btn'>Создать</button>
+				</div>
+				
+
+				<div>
+					<textarea class='descriptionInput' placeholder='Ведите описание' rows="5"></textarea>
+				</div>
+
+				<div class="BTN">
+					
+				<div>
+					<button class='addBtn'>Создать</button>
+				</div>
+
+				<div class="themeBtn">
+					<button id="theme-toggle">Theme switch</button>
+				</div>
+
+				</div>				
+			</div>
+
+			<div class="categoryFilterContainer">
+				<select class="categoryFilterSelect">
+					<option value="">Фильтрация по категории</option>
+				</select>
+			</div>
+
+			<div class="todos"></div>
+		</div>
+
+
+	</main>
+
+<!-- *Modal window for creating category -->
+
+	<div class="modal" id='modal'>
+		<div class="modal_container">
+			<div class="close_btn_container">
+				<img class='closeBtn' src="./img/x-mark.png" alt="icon">
+			</div>
+
+
+			<div class="modal_title">Создание категории</div>
+
+			<div class="createCategoryForm">
+				<div>
+					<input class='CreateCategoryInput' placeholder='Название категории'>
+				</div>
+
+				<div>
+					<button class='close_btn_category'>Создать</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!-- *Modal window for category  CRUD system-->
+
+	<div class="modalCategoryCRUD" id='modalCategoryCRUD'>
+		<div class="modalCategoryCRUD_container">
+
+			<div class="close_btn_CRUD_container">
+				<img class='closeBtn' src="./img/x-mark.png" alt="icon">
+			</div>
+
+			<div class="categoryTitleCRUD">
+				<h1>Редактирование категории</h1>
+			</div>
+
+			
+				<div class="categoryInputCRUD">
+					<input class="editCategoryInput" placeholder='Название категории'>
+				</div>
+
+				<div class="categoryButtonCRUD">
+					<button class="editCAtegoryBtn">Редактировать</button>
+				</div>
+			
+		</div>
+	</div>
+
+<script src="./themeToggle.js"></script>
+<script src="./categoryCRUD.js"></script>
+<script src='./script.js'></script>
+<script src='./createCategoryModal.js'></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&display=swap');
+
+
+* {
+	font-family: 'Montserrat', sans-serif;
+}
+
+body {
+	background: var(--color-bg);
+	
+}
+
+.container {
+	margin-top: 250px;
+	
+	
+}
+
+main .container .fieldsCard {
+	width: 20%;
+	padding: 30px;
+	border: var(--color-border);
+	border-radius: 20px;
+	margin: 20px auto;
+	display: flex;
+	flex-direction: column;
+}
+
+main .container .fieldsCard input {
+	margin-bottom: 10px;
+	width: 100%;
+	border-radius: 8px;
+	height: 30px;
+	padding: 5px;
+	outline: none;
+}
+
+main .container .fieldsCard textarea {
+	margin-bottom: 10px;
+	width: 100%;
+	border-radius: 8px;
+	height: 60px;
+	padding: 5px;
+	outline: none;
+}
+
+
+
+/* ?Cards Todo */
+
+.todos {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+
+.todoCard {
+	width: 300px;
+	height: 300px;
+	border: 1px solid #ccc;
+	padding: 0.7rem;
+	border-radius: 6px;
+	text-align: center;
+	margin: 0 20px;
+	margin-bottom: 20px;
+	background-color: rgb(0, 0, 0, 0.2);
+	color: var(--color-text);
+}
+
+.descriptionContainer p {
+	max-width: 400px;
+	overflow: hidden;
+}
+
+
+.todoCard h2 {
+	margin: 0;
+}
+
+.error {
+	border: 1px solid red;
+															
+
+}
+
+.completed {
+	opacity: 0.5;
+	text-decoration: line-through;
+}
+
+
+
+.addBtn {
+	padding: 10px 15px;
+	background-color: var(--color-bg-text);
+	border-radius: 5px;
+	border: none;
+	color: white;
+	font-family: 'Montserrat', sans-serif;
+	margin-right: 90px;
+}
+
+.addBtn:hover {
+	color: black;
+	background-color: white;
+	transition: 1.5s;
+}
+
+/* ?Button Card */
+
+
+.deleteBtn,
+.EditBtn,
+.CompleteBtn {
+	padding: 5px 5px;
+	border-radius: 6px;
+	border: none;
+	margin: 0 3px;
+	cursor: pointer;
+	background-color: var(--color-bg-text);
+	color: var(--color-text);
+	margin-top: 100px;
+	
+}
+
+.dates {
+	position: relative;
+    top: 110px;
+}
+
+
+.EditBtn:hover,
+.deleteBtn:hover,
+.CompleteBtn:hover {
+	opacity: 0.6;
+	transition: 0.5s;
+}
+
+/* ?Category */
+
+.categorySelect {
+	margin-bottom: 20px;
+	width: 70%;
+	height: 30px;
+	border-radius: 5px;
+
+}
+
+.add_btn {
+	width: 90px;
+	padding: 7px 0;
+	border-radius: 6px;
+	border: none;
+	margin-left: 10px;
+	background-color: var(--color-bg-text);
+	color: #ccc;
+}
+
+.add_btn:hover {
+	color: black;
+	background-color: white;
+	transition: 1.5s;
+}
+
+
+/* ?Modal category */
+
+.modal {
+	visibility: hidden;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.modal_container {
+	background-color: #ccc;
+	margin-top: 400px;
+	margin-left: 650px;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 30%;
+	height: 17%;
+	border-radius: 15px;
+}
+
+.modal_title {
+	font-size: 22px;
+	text-align: center;
+}
+
+.closeBtn {
+	width: 20px;
+	height: 20px;
+}
+
+.close_btn_container {
+	text-align: right;
+	cursor: pointer;
+}
+
+.closeBtn:hover {
+	opacity: 0.5;
+}
+
+
+.CreateCategoryInput {
+	width: 95%;
+	height: 35px;
+	margin: 20px 0;
+	border-radius: 6px;
+	border: none;
+}
+
+.createCategoryForm div {
+	text-align: center;
+}
+
+.close_btn_category {
+	padding: 10px 10px;
+	border-radius: 5px;
+	border: none;
+	background-color: var(--color-bg-text);
+	color:  #ccc;
+}
+
+.close_btn_category:hover {
+	color: black;
+	background-color: white;
+	transition: 1.5s;
+}
+
+
+/* ?theme */
+
+
+.BTN {
+	display: flex;
+	justify-content: center;
+
+}
+
+#theme-toggle {
+	padding: 10px 15px;
+	background-color: var(--color-bg-text);
+	border-radius: 5px;
+	border: none;
+	color: white;
+	margin-left: 80px;
+}
+	
+
+#theme-toggle:hover {
+	color: black;
+	background-color: white;
+	transition: 1.5s;
+}
+
+    
+body.light {
+    --color-bg:  url(./img/fon\ 1.jpg) fixed;
+    --color-text: #333;
+	--color-border: 1px solid #FF0090;
+	--color-bg-text: #007FFF;
+    transition: 1.5s;	
+
+  }
+  
+ body.dark {	
+    --color-bg: url(./img/fon\ 2.jpg) fixed;
+    --color-text:  #f2f2f2;
+	--color-border: 1px solid white;
+	--color-bg-text: #1B1B1B;
+    transition: 1.5s;
+  }
+  
+/* ? Filter select */
+
+
+.categoryFilterContainer {
+	text-align: center;
+}
+
+.categoryFilterSelect {
+	width: 250px;
+	height: 30px;
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+
+
+/* ? Modal Category CRUD  */
+
+  .modalCategoryCRUD {
+	visibility: hidden;
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.modalCategoryCRUD_container {
+	background-color: #ccc;
+	margin-top: 400px;
+	margin-left: 650px;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 30%;
+	height: 21%;
+	border-radius: 15px;
+}
+
+
+.categoryInputCRUD {
+	display: flex;
+}
+
+.categoryInputCRUD input {
+	width: 100%;
+	height: 40px;
+	margin-bottom: 20px;
+	border-radius: 6px;
+}
+
+.close_btn_CRUD_container {
+	text-align: right;
+	cursor: pointer;
+}
+
+
+.categoryButtonCRUD button{
+	padding: 10px 7px;
+	border-radius: 6px;
+	border: none;
+	background-color: var(--color-bg-text);
+	color: white;
+
+}
+
+.categoryButtonCRUD button:hover {
+	color: black;
+	background-color: white;
+	transition: 1.5s;
+}
+
+
