@@ -5,13 +5,13 @@ const $container = document.querySelector('.todos')
 const $categorySelect = document.querySelector('.categorySelect')
 const $categoryFilterSelect = document.querySelector('.categoryFilterSelect')
 
+const BASE_URL = 'https://todo-fe7d7-default-rtdb.asia-southeast1.firebasedatabase.app'
+
 // ?Load todos from local storage
 window.addEventListener('load', () => {
-	const todos = getTodos()
 
-	todos.reverse().forEach(todo => {
-		$container.insertAdjacentHTML('beforeend', cardTemplate(todo))
-	})
+	getTodosRequest() 
+
 })
 
 
@@ -28,7 +28,6 @@ window.addEventListener('load', () => {
 
 
 // ?Validated
-											
 
 function openAddbtn () {
 	if (isValidated($title) && isValidated($categorySelect) && isValidated($description)) {
@@ -94,9 +93,9 @@ function cardTemplate(todo) {
       </div>
 
       <div>
-        <button class='CompleteBtn' onclick="completeTodo(${id})">Complete</button>
-        <button class='deleteBtn' onclick="deleteTodo(${id})">Delete</button>
-        <button class='EditBtn' onclick="editTodo(${id})">Edit</button>
+        <button class='CompleteBtn' onclick="completeTodo('${id}')">Complete</button>
+        <button class='deleteBtn' onclick="deleteTodo('${id}')">Delete</button>
+        <button class='EditBtn' onclick="editTodo('${id}')">Edit</button>
       </div>
     </div>  
   `
@@ -123,11 +122,9 @@ function categoryTemplate(category) {
 
 // ? CreateTodo
 
-function createTodo({ title, description, category }) {
-	const currentTodos = getTodos()
+async function createTodo({ title, description, category }) {
 
 	const todo = {
-		id: generateId(),
 		title: title.trim(),
 		description: description.trim(),
 		completed: false,
@@ -136,48 +133,110 @@ function createTodo({ title, description, category }) {
 		category,
 	}
 
-	setTodos([...currentTodos, todo])
 
-	$container.insertAdjacentHTML('afterbegin', cardTemplate(todo))
+	//? POST 
 
-	resetFields()
+	try {
+		 await fetch(`${BASE_URL}/todos.json`, {
+			method: 'POST',
+			body: JSON.stringify(todo),
+		})
+
+	
+	    resetFields()
+
+		$container.insertAdjacentHTML('afterbegin', cardTemplate(todo))
+
+		
+
+	} catch (e) {
+		console.error(e)
+	}
+}
+
+//? Get todos 
+
+async function getTodosRequest() {
+	try {
+		const response = await fetch(`${BASE_URL}/todos.json`)
+
+		const todos = await response.json()
+
+		const todoArr = Object.entries(todos).map(([id, val]) => {
+			return {
+				id,
+				...val
+			}
+		}) 
+
+		const tempLate = todoArr.reverse().reduce((acc, todo) => acc + cardTemplate(todo), '')
+
+		$container.innerHTML = tempLate
+
+	} catch (e) {
+		console.error(e)
+	}
 }
 
 
 //? Delete Card
 
-function deleteTodo(id) {
-	const confirmDelete = confirm('Are you sure?')
+async function deleteTodo(id) {
+
+	try {
+
+		const confirmDelete = confirm('Are you sure?')
   
-	if (!confirmDelete) return
-  
-	const updatedTodos = getTodos().filter(todo => todo.id !== id)
-  
-	setTodos(updatedTodos)
-  
-	// Remove the deleted todo from the DOM
-	reloadPage()
+     	if (!confirmDelete) return
+
+		await fetch(`${BASE_URL}/todos/${id}.json`, {
+			method: 'DELETE'
+		})
+
+		await getTodosRequest()
+
+
+	} catch (e) {
+		console.error(e)
+	}
 	
   }
 
 
 //? Completed  Card
 
-function completeTodo(id) {
-	const todos = getTodos()
+async function completeTodo(id) {
+
+	try {
+		await fetch(`${BASE_URL}/todos/${id}.json`, {
+			method: 'PATCH',
+			body: JSON.stringify({
+				completed: true,
+
+			})
+		})
+
+		await getTodosRequest()
+
+	} catch (e) {
+		console.error(e)
+	}
 
 
-	const updatedTodos = todos.map(todo => {
-		if (todo.id === id) {
-			todo.completed = !todo.completed
-		}
+// 	const todos = getTodos()
 
-		return todo
-	})
 
-	setTodos(updatedTodos)
+// 	const updatedTodos = todos.map(todo => {
+// 		if (todo.id === id) {
+// 			todo.completed = !todo.completed
+// 		}
 
-	reloadPage()
+// 		return todo
+// 	})
+
+// 	setTodos(updatedTodos)
+
+// 	reloadPage()
 }
 
 
